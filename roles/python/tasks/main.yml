@@ -1,0 +1,14 @@
+---
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: Python and pip
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - python-pip
+    - python-mysqldb
+  become: yes

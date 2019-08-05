@@ -1,0 +1,9 @@
+---
+  - name:  Kanboard setup
+    hosts: groupA
+    roles:
+      - apache
+      - php
+      - kanboard
+      - python
+      - mysql

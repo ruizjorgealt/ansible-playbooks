@@ -1,0 +1,9 @@
+---
+  - name:  Setup wordpress website
+    hosts: groupA
+    roles:
+      - apache
+      - php
+      - python
+      - mysql
+      - wordpress

@@ -1,0 +1,25 @@
+---
+
+- name: start apache2
+  service:
+    name: apache2
+    state: started
+  become: yes
+
+- name: stop apache2
+  service:
+    name: apache2
+    state: stopped
+  become: yes
+  
+- name: reload apache2
+  service:
+    name: apache2
+    state: reloaded
+  become: yes
+
+- name: restart apache2
+  service:
+    name: apache2
+    state: restarted
+  become: yes

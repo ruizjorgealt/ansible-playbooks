@@ -1,0 +1,14 @@
+*.terraform/
+*.retry
+*.tfstate
+*.tfstate.backup
+*hosts.ini
+*.my.cnf*
+*mysqldump-201*
+*db_variables.tf
+*mysql_all_users.txt
+*mysqldump*.sql
+*.DS_Store
+*htdocs/
+.env
+test.py

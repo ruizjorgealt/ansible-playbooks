@@ -1,0 +1,69 @@
+---
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: Install PHP modules for wordpress
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - php7.2-curl 
+    - php7.2-gd
+    - php7.2-mbstring 
+    - php7.2-xml
+    - php7.2-xmlrpc
+    - php7.2-soap
+    - php7.2-intl
+    - php7.2-zip
+    - php7.2-mysql
+  become: yes
+  notify: reload apache2
+
+# - name: Download wordpress
+#   get_url:
+#     url: https://wordpress.org/latest.tar.gz
+#     dest: /var/www/html
+#   become: yes
+
+# - name: Extract wordpress source files
+#   unarchive:
+#     src: /var/www/html/wordpress-5.0.2.tar.gz
+#     dest: /var/www/html
+#     remote_src: yes
+#   become: yes
+
+- name: Unarchive a file that needs to be downloaded (added in 2.0)
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /var/www/html
+    remote_src: yes
+    owner: www-data
+    group: www-data
+  become: yes
+
+- name: Copy wordpress configuration
+  template:
+    src: wordpress/wp-config-sample.php
+    dest: /var/www/html/wordpress/wp-config.php
+    owner: www-data
+    group: www-data
+    mode: 0774
+  become: yes
+
+- name: Change directory permissions to www-data
+  file:
+    path: /var/www/html/wordpress
+    owner: www-data
+    group: www-data
+    recurse: yes
+  become: yes
+  notify: reload apache2
+
+- name: Remove unnecessary files
+  file:
+    state: absent
+    path: /var/www/html/wordpress-*
+    remote_src: yes
+  become: yes

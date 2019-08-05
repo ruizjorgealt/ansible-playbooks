@@ -1,0 +1,67 @@
+---
+- name: Set locales
+  locale_gen:
+    name: en_US.UTF-8
+  become: yes
+
+- name: Install required packages for kanboard
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - php7.2-cli
+    - php7.2-mbstring
+    - php7.2-sqlite3
+    - php7.2-opcache
+    - php7.2-json
+    - php7.2-mysql
+    - php7.2-pgsql
+    - php7.2-ldap
+    - php7.2-gd
+    - php7.2-xml
+    - unzip
+  notify: reload apache2
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: Download kanboard
+  get_url: 
+    url: https://github.com/kanboard/kanboard/archive/v{{ version }}.zip
+    dest: /var/www/html
+  become: yes
+
+- name: Extract kanboard source files
+  unarchive:
+    src: /var/www/html/kanboard-{{ version }}.zip
+    dest: /var/www/html
+    remote_src: yes
+  become: yes
+  
+- name: Copy kanboard configuration
+  template:
+    src: kanboard/config.php
+    dest: /var/www/html/kanboard-{{ version }}/config.php
+    owner: www-data
+    group: www-data
+    mode: 0774
+  become: yes
+
+- name: Change directory permissions to www-data
+  file:
+    path: /var/www/html/kanboard-{{ version }}
+    owner: www-data
+    group: www-data
+    recurse: yes
+  become: yes
+  notify: reload apache2
+
+- name: Remove unnecessary files
+  file:
+    state: absent
+    path: /var/www/html/kanboard-{{ version }}.zip
+    remote_src: yes
+  become: yes

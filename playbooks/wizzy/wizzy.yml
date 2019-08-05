@@ -1,0 +1,6 @@
+---
+  - name:  Install wizzy for Grafana dashboard management
+    hosts: groupA
+    roles:
+      - node
+      - wizzy

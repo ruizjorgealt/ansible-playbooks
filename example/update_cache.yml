@@ -1,0 +1,9 @@
+---
+  - name: "Update cache"
+    hosts: groupA
+  
+    tasks: 
+      - name: Updating system repo cache
+        apt:
+          update_cache: yes
+        become: yes

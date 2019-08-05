@@ -1,0 +1,13 @@
+---
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: Install apache2
+  apt:
+    name: apache2
+    state: latest
+  become: yes
+  notify: start apache2

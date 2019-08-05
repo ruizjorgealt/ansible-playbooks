@@ -1,0 +1,29 @@
+---
+
+- name: Add source repository 
+  apt_repository: 
+    repo: ppa:ondrej/php
+  become: yes
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: Install php and basic modules
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - php
+    - libapache2-mod-php7.0
+    - php-mysql
+  become: yes
+  notify: reload apache2
+
+# - name: Copy PHP script for testing purposes
+#   copy:
+#     src: ../files/info.php
+#     dest: /var/www/html
+#     owner: www-data
+#     group: www-data
+#   become: yes

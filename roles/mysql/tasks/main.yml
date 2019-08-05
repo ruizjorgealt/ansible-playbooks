@@ -1,0 +1,36 @@
+--- 
+
+- name: Install mysql
+  apt:
+    name: "{{ item }}"
+  become: yes
+  with_items:
+    - mysql-server
+  notify:
+    - start mysql
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: Install MySQL-python 
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - PyMySQL
+
+- name: Create a database
+  mysql_db:
+    name: "{{ database }}"
+    state: present
+  become: yes
+
+- name: Create user
+  mysql_user:
+    name: "{{ user }}"
+    password: "{{ password }}"
+    priv: '*.*:ALL'
+    state: present
+  become: yes

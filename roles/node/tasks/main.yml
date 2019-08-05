@@ -1,0 +1,17 @@
+---
+- name: Update packages
+  apt: 
+   update_cache: yes 
+  become: yes
+
+- name: Install nodejs
+  apt:
+   name: nodejs
+   state: latest
+  become: yes
+
+# - name: Install node package manager (NPM)
+#   apt:
+#    name: npm
+#    state: latest
+#   become: yes

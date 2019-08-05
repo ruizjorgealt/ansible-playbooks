@@ -1,0 +1,46 @@
+---
+- name: Update packages
+  apt: 
+   update_cache: yes 
+  become: yes
+
+- name: Install wizzy command line tool
+  npm:
+   name: wizzy
+   global: yes
+  become: yes
+
+- name: Create Grafana entities directory
+  file:
+    path: /home/ubuntu/grafana-entities
+    state: directory
+    mode: 0755
+  become: yes
+
+- name: Initialize wizzy
+  shell: wizzy init
+  args:
+   chdir: /home/ubuntu/grafana-entities
+  become: yes
+
+- name: Create dashboards directory
+  file:
+   path: /home/ubuntu/grafana-entities/dashboards
+   state: directory
+   mode: 0755
+  become: yes
+
+- name: Set Grafana credentials
+  command: "wizzy set grafana url {{ url }}"
+  args:
+    chdir: /home/ubuntu/grafana-entities
+    
+- name: Set Grafana credentials
+  command: "wizzy set grafana username {{ user }}"
+  args:
+    chdir: /home/ubuntu/grafana-entities
+
+- name: Set Grafana credentials
+  command: "wizzy set grafana password {{ password }}"
+  args:
+    chdir: /home/ubuntu/grafana-entities

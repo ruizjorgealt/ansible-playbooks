@@ -1,0 +1,7 @@
+---
+  - name:  LAMP stack setup
+    hosts: groupA
+    roles:
+      - apache
+      - mysql
+      - php

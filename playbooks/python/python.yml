@@ -1,0 +1,5 @@
+---
+  - name:  Manage Python library dependencies
+    hosts: groupA
+    roles:
+      - python
