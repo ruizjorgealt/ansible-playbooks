@@ -14,6 +14,31 @@ Collection of Ansible playbooks
 
 ## Directory Structure
 
+```
+.
+├── README.md
+├── example
+│   ├── demoplays.yml
+│   ├── hosts
+│   └── update_cache.yml
+├── playbooks
+│   ├── LAMP
+│   ├── kanboard
+│   ├── mysql
+│   ├── python
+│   ├── wizzy
+│   └── wordpress
+└── roles
+    ├── apache
+    ├── kanboard
+    ├── mysql
+    ├── node
+    ├── php
+    ├── python
+    ├── wizzy
+    └── wordpress
+```
+
 ## How to use them
 
 ### Compatibility
