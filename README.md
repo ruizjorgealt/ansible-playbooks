@@ -20,5 +20,5 @@ Collection of Ansible playbooks
 
 ### Backlog
 
-[ ] - Prometheus server
-[ ] - Prometheus node 
+- [ ] Prometheus server
+- [ ] Prometheus node 
