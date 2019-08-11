@@ -19,3 +19,5 @@ Collection of Ansible playbooks
 ### Compatibility
 
 ### Backlog
+[ ] - Prometheus server
+[ ] - Prometheus node 
