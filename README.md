@@ -43,6 +43,8 @@ Collection of Ansible playbooks
 
 ### Compatibility
 
+Ansible v2.6.2
+
 ### Backlog
 
 - [ ] Prometheus server
