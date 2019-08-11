@@ -47,3 +47,5 @@ Collection of Ansible playbooks
 
 - [ ] Prometheus server
 - [ ] Prometheus node 
+- [ ] BookStack server
+
