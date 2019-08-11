@@ -10,12 +10,12 @@
 # Set of Ansible Playbooks
 Collection of Ansible playbooks
 
-# Playbooks Available
+## Playbooks Available
 
-# Directory Structure
+## Directory Structure
 
-# How to use them
+## How to use them
 
-# Compatibility
+### Compatibility
 
-# Backlog
+### Backlog
