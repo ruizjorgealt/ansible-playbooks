@@ -4,6 +4,5 @@
     roles:
       - apache
       - php
-      - python
       - mysql
       - wordpress

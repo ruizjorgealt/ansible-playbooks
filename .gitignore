@@ -3,6 +3,7 @@
 *.tfstate
 *.tfstate.backup
 *hosts.ini
+hosts.*
 *.my.cnf*
 *mysqldump-201*
 *db_variables.tf

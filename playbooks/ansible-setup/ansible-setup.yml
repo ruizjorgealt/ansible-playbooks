@@ -1,0 +1,8 @@
+---
+    - name:  Ansible setup
+      become: yes
+      hosts: groupA
+      gather_facts: no
+      pre_tasks:
+      roles:
+        - python
